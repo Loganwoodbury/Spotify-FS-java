@@ -1,0 +1,13 @@
+.album {
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+    gap: 5px;
+}
+
+.albumItem {
+    text-align: center;
+}
+
+.albumImage {
+    width: 200px;
+}
