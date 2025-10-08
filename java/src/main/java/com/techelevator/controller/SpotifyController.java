@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import se.michaelthelin.spotify.model_objects.specification.Album;
 import se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 import se.michaelthelin.spotify.model_objects.specification.Artist;
+import se.michaelthelin.spotify.model_objects.specification.TrackSimplified;
 
 @RestController
 @CrossOrigin
@@ -27,5 +28,10 @@ public class SpotifyController {
     @GetMapping("/albums/{artistId}")
     public AlbumSimplified[] getAlbumsByArtistId(@PathVariable String artistId){
         return service.getAlbumsByArtistId(artistId);
+    }
+
+    @GetMapping(path="/albums/{albumId}/tracks")
+    public TrackSimplified[] getTracksByAlbumId(@PathVariable String albumId){
+        return service.getTracksByAlbumId(albumId);
     }
 }

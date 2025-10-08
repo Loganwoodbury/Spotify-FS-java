@@ -18,6 +18,11 @@ export default function MainNav() {
             </NavLink>
           </div>
           <div className="nav-link">
+            <NavLink to="/spotify">
+              Spotify
+            </NavLink>
+          </div>
+          <div className="nav-link">
             <Link to="/logout">
               Logout
             </Link>

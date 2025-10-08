@@ -6,11 +6,9 @@ import org.springframework.stereotype.Service;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.credentials.ClientCredentials;
-import se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
-import se.michaelthelin.spotify.model_objects.specification.Artist;
-import se.michaelthelin.spotify.model_objects.specification.Paging;
-import se.michaelthelin.spotify.model_objects.specification.Track;
+import se.michaelthelin.spotify.model_objects.specification.*;
 import se.michaelthelin.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
+import se.michaelthelin.spotify.requests.data.albums.GetAlbumsTracksRequest;
 import se.michaelthelin.spotify.requests.data.artists.GetArtistsAlbumsRequest;
 import se.michaelthelin.spotify.requests.data.artists.GetArtistsTopTracksRequest;
 import se.michaelthelin.spotify.requests.data.search.simplified.SearchAlbumsRequest;
@@ -104,28 +102,33 @@ public class SpotifyService {
     public AlbumSimplified[] getAlbumsByArtistId(String artistId){
 
         GetArtistsAlbumsRequest getArtistsAlbumsRequest =
-
                 spotifyApi.getArtistsAlbums(artistId)
-
                         .build();
-
         try {
-
             Paging<AlbumSimplified> albumSimplifiedPaging =
-
                     getArtistsAlbumsRequest.execute();
 
-
-
             return albumSimplifiedPaging.getItems();
-
         } catch (IOException | SpotifyWebApiException | ParseException e) {
-
             System.out.println("Error: " + e.getMessage());
-
         }
-
         return null;
+    }
 
+    public TrackSimplified[] getTracksByAlbumId(String albumId){
+
+        GetAlbumsTracksRequest getAlbumsTracksRequest =
+                spotifyApi.getAlbumsTracks(albumId)
+                        .build();
+
+        try{
+            Paging<TrackSimplified> trackSimplifiedPaging =
+                    getAlbumsTracksRequest.execute();
+
+            return trackSimplifiedPaging.getItems();
+        } catch (IOException | SpotifyWebApiException | ParseException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return null;
     }
 }

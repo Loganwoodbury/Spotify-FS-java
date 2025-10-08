@@ -6,6 +6,7 @@ import RegisterView from './views/RegisterView/RegisterView';
 import UserProfileView from './views/UserProfileView/UserProfileView';
 import MainNav from './components/MainNav/MainNav';
 import ProtectedRoute from './components/ProtectedRoute';
+import SpotifyView from './views/SpotifyView/SpotifyView';
 
 export default function App() {
 
@@ -19,6 +20,7 @@ export default function App() {
               <Route path="/login" element={<LoginView />} />
               <Route path="/logout" element={<LogoutView />} />
               <Route path="/register" element={<RegisterView />} />
+              <Route path="/spotify" element={<SpotifyView />} />
               <Route
                 path="/userProfile"
                 element={
